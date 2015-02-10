@@ -1,0 +1,114 @@
+{% include 'header.html' %}
+<div class="container" role="main">
+<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<img src="images/logo.jpeg" class="img img-responsive">
+		</div>
+	</div>
+<div class="row">
+        
+		<div class="col-md-6 col-md-offset-3">
+            <form action="registrar_usuario" id="formulario-registro"  method="post" accept-charset="utf-8" class="form" role="form">   
+			<legend>Registro</legend>
+			{% include 'mensajes_flash.html' %}
+                    <!--<h4>es gratis y siempre lo ser&aacute;.</h4> !-->
+					<div class="form-group">    				
+						<input  type="text" name="nombres" value="" class="form-control input" placeholder="Su nombre" aria-required="true" />
+					</div>
+					<div class="row">
+                        <div class="col-xs-6 col-md-6">
+							<div class="form-group">    
+								<input  type="text" name="apellido_paterno" value="" class="form-control input" placeholder="Su Apellido Paterno" aria-required="true" /> 
+							</div>
+						</div>
+						
+                        <div class="col-xs-6 col-md-6">
+							<div class="form-group">    
+								<input  type="text" name="apellido_materno" value="" class="form-control input" placeholder="Su Apellido Materno"  aria-required="true" />                       
+							</div>
+						</div>
+                    </div>
+	
+					<div class="form-group">
+						<input  type="text" name="email" value="" class="form-control input" placeholder="Su Email" aria-required="true" />
+					</div>
+					<div class="form-group">
+						<input  id="password" type="password" name="password" value="" class="form-control input" placeholder="Password" aria-required="true" />
+					</div>
+					<div class="form-group">
+						<input  type="password" name="confirm_password" value="" class="form-control input" placeholder="Repetir Password" aria-required="true" />
+					</div>
+              <span class="help-block">Al crear tu cuenta, aceptas nuestras <a href="#">pol&iacute;ticas de usuario</a></span>
+                    <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">
+                        Crear mi Cuenta</button>
+            </form>          
+          </div>            
+</div>
+</div> <!-- /container -->
+
+<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="js/validate-bootstrap.js"></script>
+<script type="text/javascript" src="js/localization/messages_es.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#formulario-registro").validate({
+			errorClass: 'text-danger',
+			rules: {
+				nombres: {
+					required: true,
+					minlength: 2
+				},
+				'apellido_materno': {
+					required: true,
+					minlength: 2
+				},
+				'apellido_paterno': {
+					required: true,
+					minlength: 2
+				},
+				email: {
+					required: true,
+					email: true
+				},
+				password: {
+					required: true,
+					minlength: 6
+				},
+				confirm_password: {
+					required: true,
+					minlength: 6,
+					equalTo: "#password"
+				},
+			},
+			messages: {
+				nombres: {
+					required: "Ingrese su Nombre",
+					minlength: "Este campo necesita al menos 2 caracteres"
+				},
+				'apellido_paterno': {
+					required: "Ingrese su Apellido Paterno",
+					minlength: "Este campo necesita al menos 2 caracteres"
+				},
+				'apellido_materno': {
+					required: "Ingrese su Apellido Materno",
+					minlength: "Este campo necesita al menos 2 caracteres"
+				},
+			
+				password: {
+					required: "Ingrese una contrase&ntilde;a",
+					minlength: "Su contrase&ntilde;a tiene que ser de al menos 6 car&aacute;cteres"
+				},
+				confirm_password: {
+					required: "Ingrese una contrase&ntilde;a",
+					minlength: "Su contrase&ntilde;a tiene que ser de al menos 6 car&aacute;cteres",
+					equalTo: "Las contrase&ntilde;as escritas no coinciden"
+				},
+				email: "Ingrese una cuenta de correo v&aacute;lida",
+			}
+			
+		});
+
+
+});
+</script>
+{% include 'footer.html' %}

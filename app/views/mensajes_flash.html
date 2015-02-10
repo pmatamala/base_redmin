@@ -1,0 +1,32 @@
+	{% if flash.errors is defined %}
+		<div class="alert alert-danger">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+		<p><strong>{{ flash.errors }}</strong></p>
+		{% for error in flash.errors %}
+			<p><strong>{{ error }}</strong></p>
+		{% endfor %}
+			
+		</div>
+	{% endif %}
+	
+	{% if flash.success is defined %}
+		<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+		<p><strong>{{ flash.success }}</strong></p>
+		{% for error in flash.success %}
+			<p><strong>{{ error }}</strong></p>
+		{% endfor %}
+			
+		</div>
+	{% endif %}
+	
+	{% if flash.warnings is defined %}
+		<div class="alert alert-warning">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+			<p><strong>{{ flash.warnings }}</strong></p>
+		{% for error in flash.warnings %}
+			<p><strong>{{ error }}</strong></p>
+		{% endfor %}
+			
+		</div>
+	{% endif %}

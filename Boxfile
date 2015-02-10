@@ -1,0 +1,32 @@
+web1: 
+  name: demoweb 
+  document_root: web
+  php_version: 5.4.14
+  php_extensions:
+    - mbstring
+    - mcrypt
+    - pdo_mysql
+    - redis
+    - zip
+    - xcache
+  php_session_save_handler: redis
+  php_session_save_path: "tcp://tunnel.pagodabox.com:6379"
+  shared_writable_dirs:
+    - app/storage/db/
+    - app/storage/logs/
+    - app/storage/cache/twig/
+  php_upload_max_filesize: "8M"
+  after_build:
+    - "mv pagoda/database.php app/config/database.php"
+    - "rm -R pagoda"
+    - "if [ ! -f composer.phar ]; then curl -s http://getcomposer.org/installer | php; fi; php composer.phar install --prefer-source" 
+  after_deploy:
+    - "rm -rf app/storage/cache/twig/*"
+  cron:
+    - "0 */2 * * *": "php app/cron/nuke.php"
+db1:
+  name: demodb
+  type: mysql
+cache1:
+  name: democache
+  type: redis
